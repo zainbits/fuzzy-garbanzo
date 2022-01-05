@@ -20,7 +20,7 @@ const Sidebar = () => {
 
     return (
         <div className='sidebar'>
-            <NavLink to="/" className={activeHandler('icon')}>
+            <NavLink to="/home" className={activeHandler('icon')}>
                 <FaHome />
             </NavLink>
             <div className="icon">

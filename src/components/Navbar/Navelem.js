@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 
-const Navelem = ({title, isActive, onClick}) => {
-    // const [click, setClick] = useState(false)
-    // const handleClick = () => {
-    //     setClick(!click)
-    // }
+const Navelem = ({title}) => {
+    const [click, setClick] = useState(false)
+    const handleClick = () => {
+        setClick(true)
+    }
 
     return (
-        <div className={isActive ? 'navbar_element-active' : 'navbar_element'} onClick={onClick}>
+        <div onClick={handleClick}>
             <span>{title}</span>
-            {isActive && <span>x</span>}
+            {click && <span>x</span>}
         </div>
     )
 }
