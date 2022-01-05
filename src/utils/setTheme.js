@@ -6,7 +6,7 @@ const setTheme = async (newTheme=null) => {
     let currentTheme = localStorage.getItem('currentTheme')
     if (currentTheme === "null" || currentTheme === null) {
         localStorage.setItem('currentTheme', 'default')
-        return
+        currentTheme = 'default'
     }
     if (newTheme) {
         localStorage.setItem('currentTheme', newTheme)

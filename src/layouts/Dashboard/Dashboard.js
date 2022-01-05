@@ -1,7 +1,7 @@
 import React from 'react'
 import './Dashboard.css'
 import Navbar from '../../components/Navbar/Navbar'
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Settings from '../../layouts/Settings/Settings'
 
 const Dashboard = () => {
@@ -9,9 +9,10 @@ const Dashboard = () => {
         <div className="dashboard">
             <Navbar />
             <Routes>
-                <Route path="/" element={<div>home</div>}/>
+                <Route path="/home" element={<div>home v1:32:5jan</div>}/>
                 <Route path="/about" element={<div>About</div>}/>
                 <Route path="/settings" element={<Settings />} />
+                <Route path="*" element={<Navigate replace to="/home" />} />
             </Routes>
         </div>
     )
