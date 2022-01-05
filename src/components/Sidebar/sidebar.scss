@@ -1,0 +1,35 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--sidebar);
+    height: 100%;
+    width: 50px;
+    color: var(--font-sidebar);
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 30px;
+    color: var(--font-sidebar);
+}
+
+.icon-active {
+    @extend .icon;
+    border-left: red solid;
+}
+
+.footer {
+    @extend .icon;
+    position: absolute;
+    bottom: 0px;
+}
+
+.footer-active {
+    @extend .footer;
+    border-left: red solid;
+}

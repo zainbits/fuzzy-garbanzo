@@ -1,0 +1,39 @@
+.navbar {
+    background-color: var(--navbar-bg);
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.navbar_element {
+    color: var(--font-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--navbar-items);
+    width: fit-content;
+    padding: 5px;
+    height: 30px;
+    min-width: 60px;
+    cursor: grab;
+    border-left: 1px var(--navbar-bg) solid;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-active {
+        @extend .navbar_element;
+        background-color: var(--dashboard-bg);
+    }
+}
+
+#home {
+    border-left: none;
+}
+
+#tool {
+    position: absolute;
+    right: 0px;
+}
