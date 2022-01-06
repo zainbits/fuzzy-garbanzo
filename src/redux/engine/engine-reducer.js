@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     flag: false,
     count: 0,
-    settingsNavTab: false
+    settingsNavTab: false,
+    currentNavTab: ""
 }
 
 const engineSlice = createSlice({
@@ -17,10 +18,13 @@ const engineSlice = createSlice({
             state.count++
         },
         toggleSettingsNavTab(state, action) {
-            state.settingsNavTab = !state.settingsNavTab
+            state.settingsNavTab = action.payload
+        },
+        setCurrentNavTab(state, action) {
+            state.currentNavTab = action.payload
         }
     }
 })
 
-export const { changeFlag, add, toggleSettingsNavTab } = engineSlice.actions
+export const { changeFlag, add, toggleSettingsNavTab, setCurrentNavTab } = engineSlice.actions
 export default engineSlice

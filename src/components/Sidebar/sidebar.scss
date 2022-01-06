@@ -5,6 +5,13 @@
     height: 100%;
     width: 50px;
     color: var(--font-sidebar);
+    justify-content: space-between;
+
+    &_tabs,
+    &_tools {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .icon {
@@ -16,20 +23,13 @@
     padding: 5px;
     font-size: 30px;
     color: var(--font-sidebar);
+
+    &-active {
+        @extend .icon;
+        border-left: red solid;
+    }
 }
 
-.icon-active {
-    @extend .icon;
-    border-left: red solid;
-}
-
-.footer {
-    @extend .icon;
-    position: absolute;
-    bottom: 0px;
-}
-
-.footer-active {
-    @extend .footer;
-    border-left: red solid;
+.button-close {
+    
 }

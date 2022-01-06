@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
 import setTheme from '../../utils/setTheme'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
 import { add, toggleSettingsNavTab } from '../../redux/engine/engine-reducer'
 
 const Settings = () => {
-    const { flag, count } = useSelector(state => state.engine)
+    
+    const { count } = useSelector(state => state.engine)
     const dispatch = useDispatch()
+    let navi = useNavigate()
     const themer = (theme) => {
         setTheme(theme)
     }
@@ -16,7 +18,8 @@ const Settings = () => {
             <button onClick={()=>themer("light")}>LightTheme</button>
             <button onClick={()=>themer("default")}>Default</button>
             <button onClick={()=>{dispatch(add())}}>add</button>
-            <button onClick={()=>{dispatch(toggleSettingsNavTab())}}>show hide settings navbar</button>
+            <button onClick={()=>{dispatch(toggleSettingsNavTab(true))}}>show hide settings navbar</button>
+            <button onClick={()=>{navi('/home')}}>navigatte</button>
         </div>
     )
 }

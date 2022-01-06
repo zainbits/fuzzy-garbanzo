@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     setTheme()
     dispatch(fetchItems())
-  }, [setTheme])
+  }, [dispatch])
   return (
       <div className="App">
         <Sidebar />

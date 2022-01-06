@@ -3,6 +3,18 @@
     height: 40px;
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
+    overflow: auto;
+
+    &_tabs,
+    &_tools {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &_tools {
+        margin-left: 5px;
+    }
 }
 
 .navbar_element {
@@ -33,7 +45,10 @@
     border-left: none;
 }
 
-#tool {
-    position: absolute;
-    right: 0px;
+.button-close {
+    margin-top: 4px;;
+    margin-left: 2px;
+    &:hover {
+        background-color: #f4f4f4;
+    }
 }
