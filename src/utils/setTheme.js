@@ -1,5 +1,4 @@
 import ThemeEngine from "./themeEngine";
-import { backend } from '../backend'
 
 const setTheme = async (newTheme=null) => {
     let root = document.documentElement;
@@ -19,6 +18,7 @@ const setTheme = async (newTheme=null) => {
     root.style.setProperty('--navbar-bg', data["navbar-bg"])
     root.style.setProperty('--font-primary', data['font-primary'])
     root.style.setProperty('--font-sidebar', data['font-sidebar'])
+    root.style.setProperty('--button-close', data["button-close"])
 }
 
 export default setTheme
