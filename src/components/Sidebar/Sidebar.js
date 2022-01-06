@@ -33,9 +33,9 @@ const Sidebar = () => {
                 <NavLink to="/portfolio/home" className={activeHandler('icon')}>
                     <FaHome onClick={() => { dispatch(setCurrentNavTab('closed')) }} />
                 </NavLink>
-                <div className="icon">
+                <NavLink to="#" className="icon">
                     <FaGithub />
-                </div>
+                </NavLink>
                 <div className='icon'>
                     <FaLinkedin />
                 </div>

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     contentData: {},
     name: "",
-    qualities: []
+    qualities: [],
+    themes: []
 }
 
 const contentfulSlice = createSlice({
@@ -14,6 +15,12 @@ const contentfulSlice = createSlice({
             state.contentData = action.payload
             state.name = action.payload.name
             state.qualities = action.payload.qualities
+            const themes = Object.keys(action.payload.themeData)
+            const lll = []
+            for (let i of themes) {
+                lll.push({value: i, label: i})
+            }
+            state.themes = lll
         }
     }
 })

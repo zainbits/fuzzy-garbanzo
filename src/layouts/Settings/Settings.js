@@ -1,25 +1,34 @@
 import setTheme from '../../utils/setTheme'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
-import { add, toggleSettingsNavTab } from '../../redux/engine/engine-reducer'
+import { useSelector } from 'react-redux'
+import Select from 'react-select'
+import { useState } from 'react'
+import './Settings.scss'
+
 
 const Settings = () => {
-    
-    const { count } = useSelector(state => state.engine)
-    const dispatch = useDispatch()
-    let navi = useNavigate()
-    const themer = (theme) => {
-        setTheme(theme)
+
+    const { themes } = useSelector(state => state.contentful)
+
+    const [state, setState] = useState(localStorage.getItem('currentTheme'))
+
+    const applyTheme = (theme) => {
+        setTheme(theme.value)
+        setState(localStorage.getItem('currentTheme'))
+    }
+
+    const colorStyles = {
+        control: styles => ({
+            ...styles,
+            backgroundColor: 'green',
+            color: 'yellow'
+        }),
+        option: styles => ({...styles, backgroundColor: 'yellow'})
     }
 
     return (
-        <div>
-            {count}
-            <button onClick={()=>themer("light")}>LightTheme</button>
-            <button onClick={()=>themer("default")}>Default</button>
-            <button onClick={()=>{dispatch(add())}}>add</button>
-            <button onClick={()=>{dispatch(toggleSettingsNavTab(true))}}>show hide settings navbar</button>
-            <button onClick={()=>{navi('/portfolio/home')}}>navigatte</button>
+        <div className='settings'>
+            Select Theme
+            <Select styles={colorStyles} placeholder={state} onChange={applyTheme} options={themes} />
         </div>
     )
 }

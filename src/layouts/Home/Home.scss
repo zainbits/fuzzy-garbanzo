@@ -1,6 +1,9 @@
 .home {
     display: flex;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
     .introduction {
         font-size: 3em;
