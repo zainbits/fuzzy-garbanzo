@@ -13,7 +13,7 @@ const Navelem = ({ title }) => {
 
     const clickHandler = () => {
         dispatch(setCurrentNavTab(title))
-        navigate(`/${title}`)
+        navigate(`/portfolio/${title}`)
     }
 
     const closeTabHandler = () => {

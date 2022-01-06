@@ -30,7 +30,7 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
             <div className="sidebar_tabs">
-                <NavLink to="/home" className={activeHandler('icon')}>
+                <NavLink to="/portfolio/home" className={activeHandler('icon')}>
                     <FaHome onClick={() => { dispatch(setCurrentNavTab('closed')) }} />
                 </NavLink>
                 <div className="icon">

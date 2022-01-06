@@ -1,0 +1,14 @@
+.home {
+    display: flex;
+    padding: 20px;
+    height: 100vh;
+
+    .introduction {
+        font-size: 3em;
+    }
+
+    .iam {
+        display: flex;
+        flex-direction: row;
+    }
+}
