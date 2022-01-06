@@ -19,7 +19,7 @@ const Settings = () => {
             <button onClick={()=>themer("default")}>Default</button>
             <button onClick={()=>{dispatch(add())}}>add</button>
             <button onClick={()=>{dispatch(toggleSettingsNavTab(true))}}>show hide settings navbar</button>
-            <button onClick={()=>{navi('/home')}}>navigatte</button>
+            <button onClick={()=>{navi('/portfolio/home')}}>navigatte</button>
         </div>
     )
 }

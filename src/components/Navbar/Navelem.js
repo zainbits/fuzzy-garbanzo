@@ -21,7 +21,7 @@ const Navelem = ({ title }) => {
             dispatch(toggleSettingsNavTab(false))
         }
         dispatch(setCurrentNavTab('close'))
-        navigate("home")
+        navigate("/portfolio/home")
     }
 
     useEffect(() => {

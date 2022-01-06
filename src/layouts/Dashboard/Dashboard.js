@@ -6,7 +6,6 @@ import Settings from '../../layouts/Settings/Settings'
 import Home from '../Home/Home'
 
 const Dashboard = () => {
-    console.log(process.env.PUBLIC_URL)
     return (
         <div className="dashboard">
             <Navbar />

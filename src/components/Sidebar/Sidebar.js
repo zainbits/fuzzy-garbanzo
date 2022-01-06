@@ -41,7 +41,7 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="sidebar_tools">
-                <NavLink to="/settings" className={activeHandler('icon')}>
+                <NavLink to="/portfolio/settings" className={activeHandler('icon')}>
                     <AiFillSetting onClick={clickHandler} />
                 </NavLink >
             </div>
