@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import { Route, Routes, Navigate } from "react-router-dom";
 import Settings from '../../layouts/Settings/Settings'
 import Home from '../Home/Home'
+import Github from '../Github/Github'
 
 const Dashboard = () => {
     return (
@@ -15,7 +16,8 @@ const Dashboard = () => {
                 <Route path="/portfolio/settings" element={<Settings />} />
                 <Route path="/portfolio/projects" element={<div>projects</div>}/>
                 <Route path="/portfolio/skills" element={<div>skills</div>}/>
-                <Route path="*" element={<Navigate replace to="/portfolio/home" />} />
+                <Route path="/portfolio/git" element={<Github />} />
+                <Route path="/portfolio/*" element={<Navigate replace to="/portfolio/home" />} />
             </Routes>
         </div>
     )
