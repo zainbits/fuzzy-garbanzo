@@ -16,7 +16,8 @@ const Navelem = ({ title }) => {
         navigate(`/portfolio/${title}`)
     }
 
-    const closeTabHandler = () => {
+    const closeTabHandler = e => {
+        e.stopPropagation()
         if (currentNavTab === 'settings') {
             dispatch(toggleSettingsNavTab(false))
         }
@@ -35,8 +36,8 @@ const Navelem = ({ title }) => {
     }, [currentNavTab, title])
 
     return (
-        <div className={className}>
-            <span onClick={clickHandler}>{title}</span>
+        <div  onClick={clickHandler} className={className}>
+            <span>{title}</span>
             {click && <span className='button-close' onClick={closeTabHandler}><IoMdClose /></span>}
         </div>
     )
