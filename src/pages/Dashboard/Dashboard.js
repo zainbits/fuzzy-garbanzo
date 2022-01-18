@@ -2,7 +2,7 @@ import React from 'react'
 import './Dashboard.css'
 import Navbar from '../../components/Navbar/Navbar'
 import { Route, Routes, Navigate } from "react-router-dom";
-import Settings from '../../layouts/Settings/Settings'
+import Settings from '../Settings/Settings'
 import Home from '../Home/Home'
 import Github from '../Github/Github'
 
