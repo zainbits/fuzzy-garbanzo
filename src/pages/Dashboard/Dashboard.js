@@ -5,6 +5,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Settings from '../Settings/Settings'
 import Home from '../Home/Home'
 import Github from '../Github/Github'
+import Education from '../Education/Education'
 
 const Dashboard = () => {
     return (
@@ -12,7 +13,7 @@ const Dashboard = () => {
             <Navbar />
             <Routes>
                 <Route path="/portfolio/home" element={<Home />}/>
-                <Route path="/portfolio/education" element={<div>education</div>}/>
+                <Route path="/portfolio/education" element={<Education />}/>
                 <Route path="/portfolio/settings" element={<Settings />} />
                 <Route path="/portfolio/projects" element={<div>projects</div>}/>
                 <Route path="/portfolio/skills" element={<div>skills</div>}/>

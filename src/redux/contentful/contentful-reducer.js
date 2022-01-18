@@ -5,6 +5,7 @@ const initialState = {
     name: "",
     qualities: [],
     themes: [],
+    education: [],
     themesData: {},
 }
 
@@ -17,6 +18,7 @@ const contentfulSlice = createSlice({
             state.name = action.payload.name
             state.qualities = action.payload.qualities
             state.themesData = action.payload.themeData
+            state.education = action.payload.education
             const themes = Object.keys(action.payload.themeData)
             const arr = []
             for (let i of themes) {

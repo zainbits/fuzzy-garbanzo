@@ -1,0 +1,28 @@
+import React from 'react'
+import style from './Education.module.scss'
+import { useSelector } from 'react-redux'
+
+const Education = () => {
+
+    const { education } = useSelector(state => state.contentful)
+
+    return (
+        <div className={style.education_component}>
+            {education.map( (item, index) => {
+                const details = Object.keys(item).slice(1)
+                return <div key={index}>
+                    <h3>{item.name}</h3>
+                    <ul>
+                    {details.map( key => (
+                        <li key={key}>
+                            {key} : {item[key]}
+                        </li>
+                    ))}
+                    </ul>
+                </div>
+            })}
+        </div>
+    )
+}
+
+export default Education
