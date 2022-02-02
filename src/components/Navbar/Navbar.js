@@ -8,9 +8,8 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar_tabs">
-                <Navelem title="projects" />
-                <Navelem title="education" />
                 <Navelem title="skills" />
+                <Navelem title="education" />
                 {settingsNavTab && <Navelem title="settings" />}
             </div>
             <div className="navbar_tools">

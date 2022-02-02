@@ -6,6 +6,7 @@ import Settings from '../Settings/Settings'
 import Home from '../Home/Home'
 import Github from '../Github/Github'
 import Education from '../Education/Education'
+import Skills from '../Skills/Skills'
 
 const Dashboard = () => {
     return (
@@ -15,8 +16,7 @@ const Dashboard = () => {
                 <Route path="/portfolio/home" element={<Home />}/>
                 <Route path="/portfolio/education" element={<Education />}/>
                 <Route path="/portfolio/settings" element={<Settings />} />
-                <Route path="/portfolio/projects" element={<div>projects</div>}/>
-                <Route path="/portfolio/skills" element={<div>skills</div>}/>
+                <Route path="/portfolio/skills" element={<Skills />}/>
                 <Route path="/portfolio/git" element={<Github />} />
                 <Route path="/portfolio/*" element={<Navigate replace to="/portfolio/home" />} />
             </Routes>

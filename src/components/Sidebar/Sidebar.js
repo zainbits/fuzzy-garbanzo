@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './sidebar.scss'
 import { FaGithub, FaLinkedin, FaHome } from 'react-icons/fa'
 import { AiFillSetting } from 'react-icons/ai'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { setCurrentNavTab, toggleSettingsNavTab } from '../../redux/engine/engine-reducer'
 import { useDispatch } from 'react-redux'
 
 const Sidebar = () => {
+    const location = useLocation();
+
+    useEffect(() => {
+        const path = location.pathname.split('/')[2];
+        dispatch(setCurrentNavTab(path));
+    })
 
     const dispatch = useDispatch()
 
@@ -22,18 +28,13 @@ const Sidebar = () => {
         return type === 'icon' ? iconActiveHandler : footerActiveHandler
     }
 
-    const clickHandler = () => {
-        dispatch(setCurrentNavTab('settings'))
-        dispatch(toggleSettingsNavTab(true))
-    }
-
     return (
         <div className='sidebar'>
             <div className="sidebar_tabs">
                 <NavLink to="/portfolio/home" className={activeHandler('icon')}>
-                    <FaHome onClick={() => { dispatch(setCurrentNavTab('closed')) }} />
+                    <FaHome />
                 </NavLink>
-                <NavLink to="/portfolio/git" className="icon">
+                <NavLink to="/portfolio/git" className={activeHandler('icon')}>
                     <FaGithub />
                 </NavLink>
                 <div className='icon'>
@@ -42,7 +43,7 @@ const Sidebar = () => {
             </div>
             <div className="sidebar_tools">
                 <NavLink to="/portfolio/settings" className={activeHandler('icon')}>
-                    <AiFillSetting onClick={clickHandler} />
+                    <AiFillSetting onClick={() => dispatch(toggleSettingsNavTab(true))} />
                 </NavLink >
             </div>
         </div>
