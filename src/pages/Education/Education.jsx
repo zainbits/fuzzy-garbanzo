@@ -9,12 +9,12 @@ const Education = () => {
     return (
         <div className={style.education_component}>
             {education.map( (item, index) => {
-                const details = Object.keys(item).slice(1)
+                const details = Object.keys(item)
                 return <div key={index}>
-                    <h3>{item.name}</h3>
+                    <h2>{item.name}</h2>
                     <ul>
                     {details.map( key => (
-                        <li key={key}>
+                        key !== "name" && <li key={key}>
                             {key} : {item[key]}
                         </li>
                     ))}
