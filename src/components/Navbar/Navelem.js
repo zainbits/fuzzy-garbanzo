@@ -13,7 +13,7 @@ const Navelem = ({ title }) => {
 
     const clickHandler = () => {
         dispatch(setCurrentNavTab(title))
-        navigate(`/portfolio/${title}`)
+        navigate(`/${title}`)
     }
 
     const closeTabHandler = e => {
@@ -22,7 +22,7 @@ const Navelem = ({ title }) => {
             dispatch(toggleSettingsNavTab(false))
         }
         dispatch(setCurrentNavTab('close'))
-        navigate("/portfolio/home")
+        navigate("/home")
     }
 
     useEffect(() => {

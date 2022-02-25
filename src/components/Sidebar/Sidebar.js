@@ -10,7 +10,7 @@ const Sidebar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const path = location.pathname.split('/')[2];
+        const path = location.pathname.split('/')[1];
         dispatch(setCurrentNavTab(path));
     })
 
@@ -31,10 +31,10 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
             <div className="sidebar_tabs">
-                <NavLink to="/portfolio/home" className={activeHandler('icon')}>
+                <NavLink to="/home" className={activeHandler('icon')}>
                     <FaHome />
                 </NavLink>
-                <NavLink to="/portfolio/git" className={activeHandler('icon')}>
+                <NavLink to="/git" className={activeHandler('icon')}>
                     <FaGithub />
                 </NavLink>
                 <div className='icon'>
@@ -42,7 +42,7 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="sidebar_tools">
-                <NavLink to="/portfolio/settings" className={activeHandler('icon')}>
+                <NavLink to="/settings" className={activeHandler('icon')}>
                     <AiFillSetting onClick={() => dispatch(toggleSettingsNavTab(true))} />
                 </NavLink >
             </div>

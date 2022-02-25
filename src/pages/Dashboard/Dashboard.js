@@ -13,12 +13,12 @@ const Dashboard = () => {
         <div className="dashboard">
             <Navbar />
             <Routes>
-                <Route path="/portfolio/home" element={<Home />}/>
-                <Route path="/portfolio/education" element={<Education />}/>
-                <Route path="/portfolio/settings" element={<Settings />} />
-                <Route path="/portfolio/skills" element={<Skills />}/>
-                <Route path="/portfolio/git" element={<Github />} />
-                <Route path="/portfolio/*" element={<Navigate replace to="/portfolio/home" />} />
+                <Route path="/home" element={<Home />}/>
+                <Route path="/education" element={<Education />}/>
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/skills" element={<Skills />}/>
+                <Route path="/git" element={<Github />} />
+                <Route path="/*" element={<Navigate replace to="/home" />} />
             </Routes>
         </div>
     )
