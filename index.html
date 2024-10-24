@@ -45,25 +45,25 @@
 
     /* Custom Cursor Styles */
     .cursor {
-      width: 20px;
-      height: 20px;
+      width: 8px; /* Smaller dot */
+      height: 8px;
       border: 2px solid var(--accent);
       border-radius: 50%;
       position: fixed;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 10000; /* Higher z-index for dot */
       mix-blend-mode: difference;
       will-change: transform;
       transition: opacity 0.3s ease; /* Removed transform transition */
     }
     .cursor-follower {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
+      width: 40px; /* Larger circle */
+      height: 40px;
+      border: 2px solid var(--accent);
       border-radius: 50%;
       position: fixed;
       pointer-events: none;
-      z-index: 9998;
+      z-index: 9999; /* Lower z-index for follower */
       will-change: transform;
       transition: opacity 0.3s ease; /* Removed transform transition */
     }
@@ -409,7 +409,7 @@
       border-radius: inherit;
     }
     .contact-link:hover {
-      color: var(--background);
+      color: var(--text);
     }
     .contact-link:hover::before {
       transform: translateX(0);
@@ -560,6 +560,7 @@
       transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
       transform-style: preserve-3d;
       will-change: transform;
+      overflow: hidden;
     }
 
     /* Interactive Elements' Before States */
@@ -817,10 +818,14 @@
 
     // Updated Cursor Update Function without Easing
     function updateCursor() {
-      // Directly set cursor positions to mouse positions
-      cursor.style.transform = `translate(${mouse.x - cursor.offsetWidth / 2}px, ${mouse.y - cursor.offsetHeight / 2}px)`;
-      cursorFollower.style.transform = `translate(${mouse.x - cursorFollower.offsetWidth / 2}px, ${mouse.y - cursorFollower.offsetHeight / 2}px)`;
-
+      // Small dot follows mouse directly
+      cursor.style.transform = `translate(${mouse.x - cursor.offsetWidth/2}px, ${mouse.y - cursor.offsetHeight/2}px)`;
+      
+      // Larger circle follows with more delay
+      mouse.followerX += (mouse.x - mouse.followerX) * 0.08; // Slower follow
+      mouse.followerY += (mouse.y - mouse.followerY) * 0.08; // Slower follow
+      cursorFollower.style.transform = `translate(${mouse.followerX - cursorFollower.offsetWidth/2}px, ${mouse.followerY - cursorFollower.offsetHeight/2}px)`;
+      
       requestAnimationFrame(updateCursor);
     }
 
@@ -962,6 +967,19 @@
     // Toggle Custom Cursor
     cursorToggle.addEventListener('click', () => {
       document.body.classList.toggle('custom-cursor-disabled');
+      // Update button icon based on state
+      const icon = cursorToggle.querySelector('i');
+      if (document.body.classList.contains('custom-cursor-disabled')) {
+        icon.classList.remove('fa-mouse-pointer');
+        icon.classList.add('fa-mouse');
+        cursor.style.display = 'none';
+        cursorFollower.style.display = 'none';
+      } else {
+        icon.classList.remove('fa-mouse');
+        icon.classList.add('fa-mouse-pointer');
+        cursor.style.display = 'block';
+        cursorFollower.style.display = 'block';
+      }
     });
 
     // Toggle Theme
