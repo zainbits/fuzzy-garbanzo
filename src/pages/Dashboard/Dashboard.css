@@ -1,8 +1,0 @@
-.dashboard {
-    color: var(--font-primary);
-    background-color: var(--dashboard-bg);
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
