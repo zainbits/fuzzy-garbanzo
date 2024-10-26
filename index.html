@@ -85,6 +85,7 @@
       backdrop-filter: blur(10px);
       z-index: 1000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
     }
     nav .container {
       display: flex;
@@ -394,6 +395,10 @@
       overflow: hidden;
       transform-style: preserve-3d;
       will-change: transform;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
     }
     .contact-link::before {
       content: '';
@@ -536,6 +541,17 @@
       .experience-content::before {
         left: -40px !important;
       }
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-link {
+        font-size: 1rem;
+        padding: 12px 24px;
+        width: 200px;
+        text-align: center;
+      }
     }
 
     /* Hover States for Interactive Elements */
@@ -633,6 +649,16 @@
         transition: none !important;
         animation: none !important;
       }
+    }
+
+    /* Add styles for light theme nav */
+    [data-theme="light"] nav {
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="light"] .nav-links a {
+      color: var(--text);
     }
   </style>
 </head>
@@ -888,7 +914,8 @@
         vertexColors: true,
         transparent: true,
         opacity: 0.8,
-        sizeAttenuation: true
+        sizeAttenuation: true,
+        blending: THREE.AdditiveBlending // Add this line
       });
 
       return new THREE.Points(geometry, material);
@@ -999,7 +1026,18 @@
     // Toggle Theme
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
-      document.documentElement.setAttribute('data-theme', currentTheme === 'light' ? 'dark' : 'light');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      
+      // Update theme toggle icon
+      const icon = themeToggle.querySelector('i');
+      if (newTheme === 'light') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
     });
 
     // Toggle Accessibility Panel
