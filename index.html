@@ -818,13 +818,27 @@
 
     // Updated Cursor Update Function without Easing
     function updateCursor() {
-      // Small dot follows mouse directly
-      cursor.style.transform = `translate(${mouse.x - cursor.offsetWidth/2}px, ${mouse.y - cursor.offsetHeight/2}px)`;
+      const hoverableElements = document.querySelectorAll('.skill-card, .experience-content, .profile-photo, .contact-link');
+      let isHovering = false;
+
+      hoverableElements.forEach(elem => {
+        const rect = elem.getBoundingClientRect();
+        if (mouse.x >= rect.left && mouse.x <= rect.right && 
+            mouse.y >= rect.top && mouse.y <= rect.bottom) {
+          isHovering = true;
+        }
+      });
+
+      // Adjust following speed based on hover state
+      const followSpeed = isHovering ? 1 : 0.5;  // Increased speed when hovering
       
-      // Larger circle follows with more delay
-      mouse.followerX += (mouse.x - mouse.followerX) * 0.08; // Slower follow
-      mouse.followerY += (mouse.y - mouse.followerY) * 0.08; // Slower follow
-      cursorFollower.style.transform = `translate(${mouse.followerX - cursorFollower.offsetWidth/2}px, ${mouse.followerY - cursorFollower.offsetHeight/2}px)`;
+      mouse.followerX += (mouse.x - mouse.followerX) * followSpeed;
+      mouse.followerY += (mouse.y - mouse.followerY) * followSpeed;
+      
+      const scale = isHovering ? 0.5 : 1;
+      cursorFollower.style.transform = `translate(${mouse.followerX - cursorFollower.offsetWidth/2}px, ${mouse.followerY - cursorFollower.offsetHeight/2}px) scale(${scale})`;
+
+      cursor.style.transform = `translate(${mouse.x - cursor.offsetWidth/2}px, ${mouse.y - cursor.offsetHeight/2}px)`;
       
       requestAnimationFrame(updateCursor);
     }
@@ -1081,6 +1095,15 @@
     document.addEventListener('DOMContentLoaded', () => {
       add3DHoverEffect(document.querySelectorAll('.skill-card, .experience-content, .profile-photo, .contact-link'));
     });
+
+    // Add transition for smooth scaling
+    const cursorStyles = document.createElement('style');
+    cursorStyles.innerHTML = `
+      .cursor-follower {
+        transition: transform 0.3s ease-out;
+      }
+    `;
+    document.head.appendChild(cursorStyles);
   </script>
 </body>
 </html>
