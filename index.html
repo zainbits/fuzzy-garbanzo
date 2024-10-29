@@ -660,6 +660,40 @@
     [data-theme="light"] .nav-links a {
       color: var(--text);
     }
+
+    /* Skill Progress Bars */
+    .skill-progress {
+      margin-top: 15px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      height: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-progress .progress {
+      position: absolute;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 10px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+
+    /* Interactive Background Gradient */
+    .interactive-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), 
+                var(--accent) 0%, 
+                transparent 50%);
+    }
   </style>
 </head>
 <body>
@@ -691,7 +725,7 @@
       <!-- Profile Photo Placeholder -->
       <img src="image.jpg" alt="Profile Photo" class="profile-photo">
       <h1>Mohammad Zain Shaikh</h1>
-      <p>Crafting scalable digital solutions with code</p>
+      <p id="dynamic-text"></p>
     </div>
   </section>
 
@@ -1142,6 +1176,99 @@
       }
     `;
     document.head.appendChild(cursorStyles);
+
+    // Typing Effect
+    const phrases = [
+      "Full Stack Developer",
+      "Cloud Architecture Expert",
+      "Problem Solver",
+      "Tech Enthusiast"
+    ];
+
+    let currentPhraseIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeText() {
+      const currentPhrase = phrases[currentPhraseIndex];
+      const dynamicText = document.getElementById('dynamic-text');
+      
+      if (isDeleting) {
+        const newText = currentPhrase.substring(0, currentCharIndex - 1);
+        // Use non-breaking space to maintain height when empty
+        dynamicText.textContent = newText || '\u00A0';
+        currentCharIndex--;
+      } else {
+        dynamicText.textContent = currentPhrase.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+      }
+
+      if (!isDeleting && currentCharIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingSpeed = 50;
+        setTimeout(typeText, 1500);
+        return;
+      }
+
+      if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        typingSpeed = 100;
+      }
+
+      setTimeout(typeText, typingSpeed);
+    }
+
+    // Start typing effect
+    typeText();
+
+    // Interactive Background
+    const interactiveBg = document.createElement('div');
+    interactiveBg.classList.add('interactive-bg');
+    document.body.appendChild(interactiveBg);
+
+    document.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // Skill Progress Animation
+    function animateSkills() {
+      const skills = {
+        'Python': 90,
+        'TypeScript': 85,
+        'AWS': 88,
+        'React': 85,
+        'GraphQL': 82
+      };
+
+      const skillCards = document.querySelectorAll('.skill-card');
+      skillCards.forEach(card => {
+        const skillName = card.querySelector('h3').textContent;
+        if (skills[skillName]) {
+          const progressBar = document.createElement('div');
+          progressBar.className = 'skill-progress';
+          const progress = document.createElement('div');
+          progress.className = 'progress';
+          progressBar.appendChild(progress);
+          card.appendChild(progressBar);
+
+          // Animate progress when in view
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                progress.style.width = `${skills[skillName]}%`;
+              }
+            });
+          });
+          observer.observe(card);
+        }
+      });
+    }
+
+    // Call skill animation function
+    animateSkills();
   </script>
 </body>
 </html>
