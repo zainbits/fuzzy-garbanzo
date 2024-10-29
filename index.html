@@ -694,6 +694,22 @@
                 var(--accent) 0%, 
                 transparent 50%);
     }
+
+    .typing-effect {
+      font-size: 2em;
+      font-weight: bold;
+      color: #333;
+      border-right: 3px solid #333;
+      padding-right: 5px;
+      animation: blink 0.75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #333 }
+    }
   </style>
 </head>
 <body>
@@ -848,6 +864,9 @@
       <input type="checkbox" id="reduceMotion">
     </div>
   </div>
+
+  <!-- Typing Effect -->
+  <div class="typing-effect" id="typing-text"></div>
 
   <!-- JavaScript -->
   <script>
@@ -1179,10 +1198,10 @@
 
     // Typing Effect
     const phrases = [
-      "Full Stack Developer",
-      "Cloud Architecture Expert",
-      "Problem Solver",
-      "Tech Enthusiast"
+      "Full Stack Developer 💻",
+      "Cloud Architecture Expert ☁️",
+      "Problem Solver 🔧",
+      "Tech Enthusiast 🚀"
     ];
 
     let currentPhraseIndex = 0;
