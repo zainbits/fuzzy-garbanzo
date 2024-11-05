@@ -15,3 +15,6 @@ jobs:
 
       - name: Using Swift
         run: echo 'Hi There! I am running inside a macos runner'
+
+      - name: Running Swift File
+        run: swift hello.swift
