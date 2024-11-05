@@ -1,0 +1,17 @@
+name: Swift
+
+on:
+  push:
+    branches:
+      - workflow-branch-main
+      - workflow-branch-dev
+
+jobs:
+  sweep:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Using Swift
+        run: echo 'Hi There! I am running inside a macos runner'
